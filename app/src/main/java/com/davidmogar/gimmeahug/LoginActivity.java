@@ -16,7 +16,7 @@ public class LoginActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sample);
+        Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.hugs);
         VideoView backgroundVideo = (VideoView) findViewById(R.id.video_view);
         backgroundVideo.setVideoURI(videoUri);
         backgroundVideo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
