@@ -11,13 +11,15 @@ import android.widget.VideoView;
 
 public class LoginActivity extends ActionBarActivity {
 
+    private VideoView backgroundVideo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.hugs);
-        VideoView backgroundVideo = (VideoView) findViewById(R.id.video_view);
+        backgroundVideo = (VideoView) findViewById(R.id.video_view);
         backgroundVideo.setVideoURI(videoUri);
         backgroundVideo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -25,7 +27,6 @@ public class LoginActivity extends ActionBarActivity {
                 mp.setLooping(true);
             }
         });
-        backgroundVideo.start();
     }
 
 
@@ -49,5 +50,11 @@ public class LoginActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        backgroundVideo.start();
     }
 }
