@@ -30,23 +30,25 @@
             android:src="@drawable/logo" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/signup_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="80dp"
             android:background="@drawable/flat_accent_button"
+            android:onClick="onSignup"
             android:text="@string/signup_email"
             android:textColor="#fff" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/signup_plus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
             android:background="@drawable/flat_primary_button"
+            android:onClick="onSignup"
             android:text="@string/signup_google"
             android:textColor="#fff" />
 
