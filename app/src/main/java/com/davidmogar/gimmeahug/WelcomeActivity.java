@@ -9,14 +9,14 @@ import android.view.MenuItem;
 import android.widget.VideoView;
 
 
-public class LoginActivity extends ActionBarActivity {
+public class WelcomeActivity extends ActionBarActivity {
 
     private VideoView backgroundVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_welcome);
 
         Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.hugs);
         backgroundVideo = (VideoView) findViewById(R.id.video_view);
