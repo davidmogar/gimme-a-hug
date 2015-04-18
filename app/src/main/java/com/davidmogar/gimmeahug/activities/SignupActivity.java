@@ -1,8 +1,7 @@
-package com.davidmogar.gimmeahug;
+package com.davidmogar.gimmeahug.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.davidmogar.gimmeahug.R;
 import com.soundcloud.android.crop.Crop;
 
 import org.apache.http.HttpResponse;

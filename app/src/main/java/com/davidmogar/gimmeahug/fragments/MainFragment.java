@@ -1,4 +1,4 @@
-package com.davidmogar.gimmeahug;
+package com.davidmogar.gimmeahug.fragments;
 
 import android.app.Activity;
 import android.content.res.Resources;
@@ -12,6 +12,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.davidmogar.gimmeahug.R;
 
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;

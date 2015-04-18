@@ -1,4 +1,4 @@
-package com.davidmogar.gimmeahug;
+package com.davidmogar.gimmeahug.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.davidmogar.gimmeahug.helpers.DividerItemDecoration;
+import com.davidmogar.gimmeahug.R;
+import com.davidmogar.gimmeahug.models.User;
+import com.davidmogar.gimmeahug.adapters.UsersAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

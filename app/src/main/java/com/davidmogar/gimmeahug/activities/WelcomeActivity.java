@@ -1,4 +1,4 @@
-package com.davidmogar.gimmeahug;
+package com.davidmogar.gimmeahug.activities;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -6,11 +6,11 @@ import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Html;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import com.davidmogar.gimmeahug.R;
 
 
 public class WelcomeActivity extends ActionBarActivity {

@@ -1,4 +1,4 @@
-package com.davidmogar.gimmeahug;
+package com.davidmogar.gimmeahug.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.davidmogar.gimmeahug.R;
 
 
 public class LoginActivity extends ActionBarActivity {

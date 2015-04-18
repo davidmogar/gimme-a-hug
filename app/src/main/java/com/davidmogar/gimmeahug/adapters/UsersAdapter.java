@@ -1,11 +1,13 @@
-package com.davidmogar.gimmeahug;
+package com.davidmogar.gimmeahug.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.davidmogar.gimmeahug.R;
+import com.davidmogar.gimmeahug.models.User;
 
 import java.util.List;
 

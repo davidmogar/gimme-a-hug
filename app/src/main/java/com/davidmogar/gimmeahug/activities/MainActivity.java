@@ -1,12 +1,13 @@
-package com.davidmogar.gimmeahug;
+package com.davidmogar.gimmeahug.activities;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.View;
+
+import com.davidmogar.gimmeahug.fragments.MainFragment;
 
 import java.util.ArrayList;
 import java.util.List;

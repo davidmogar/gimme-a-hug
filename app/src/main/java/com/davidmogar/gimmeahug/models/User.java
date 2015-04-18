@@ -1,6 +1,8 @@
-package com.davidmogar.gimmeahug;
+package com.davidmogar.gimmeahug.models;
 
 import android.graphics.drawable.Drawable;
+
+import com.davidmogar.gimmeahug.R;
 
 public class User {
 

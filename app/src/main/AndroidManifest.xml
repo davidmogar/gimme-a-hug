@@ -22,7 +22,7 @@
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".activities.WelcomeActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -33,31 +33,31 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".WelcomeActivity"
+            android:parentActivityName=".activities.WelcomeActivity"
             android:theme="@style/nLiveoDrawer">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.davidmogar.gimmeahug.WelcomeActivity" />
+                android:value=".activities.WelcomeActivity" />
         </activity>
 
         <activity
-            android:name=".SignupActivity"
+            android:name=".activities.SignupActivity"
             android:label="@string/title_activity_signup"
-            android:parentActivityName=".WelcomeActivity">
+            android:parentActivityName=".activities.WelcomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.davidmogar.gimmeahug.WelcomeActivity" />
+                android:value=".activities.WelcomeActivity" />
         </activity>
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login"
-            android:parentActivityName=".WelcomeActivity">
+            android:parentActivityName=".activities.WelcomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.davidmogar.gimmeahug.WelcomeActivity" />
+                android:value=".activities.WelcomeActivity" />
         </activity>
 
         <meta-data

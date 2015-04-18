@@ -1,4 +1,4 @@
-package com.davidmogar.gimmeahug;
+package com.davidmogar.gimmeahug.helpers;
 
 import android.content.Context;
 import android.content.res.TypedArray;
