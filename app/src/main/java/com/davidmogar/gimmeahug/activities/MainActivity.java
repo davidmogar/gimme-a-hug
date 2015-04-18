@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.View;
 
+import com.davidmogar.gimmeahug.R;
 import com.davidmogar.gimmeahug.fragments.MainFragment;
 
 import java.util.ArrayList;
@@ -62,7 +63,9 @@ public class MainActivity extends NavigationLiveo implements NavigationLiveoList
 
     @Override
     public void onUserInformation() {
-
+        this.mUserPhoto.setImageResource(R.drawable.ic_no_user);
+        this.mUserName.setText(getString(R.string.anonymous_user_name));
+        this.mUserBackground.setImageResource(R.drawable.drawer_background);
     }
 
     @Override
