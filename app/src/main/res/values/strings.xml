@@ -7,8 +7,9 @@
     <string name="signup_email">Sign up with Email</string>
     <string name="signup_google">Sign up with Google+</string>
     <string name="title_activity_signup">Sign Up</string>
-    <string name="signup_password">Password</string>
-    <string name="signup_username">Username</string>
+    <string name="signup_password_hint">Password</string>
+    <string name="signup_username_hint">Username</string>
+    <string name="signup_email_hint">Email</string>
 
     <string name="signup_emptyform_error">You must fill both fields</string>
     <string name="password_not_secure_error">The password is not secure enough</string>

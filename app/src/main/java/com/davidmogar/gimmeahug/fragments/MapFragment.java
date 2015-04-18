@@ -61,6 +61,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         if (googleMap != null) {
+            googleMap.getUiSettings().setScrollGesturesEnabled(false);
             googleMap.setMyLocationEnabled(true);
             googleMap.addMarker(new MarkerOptions().position(new LatLng(10, 10)).title("Hello world"));
         }

@@ -1,16 +1,23 @@
 package com.davidmogar.gimmeahug.activities;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Intent;
+import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.davidmogar.gimmeahug.R;
+
+import java.util.regex.Pattern;
 
 
 public class WelcomeActivity extends ActionBarActivity {
@@ -48,6 +55,10 @@ public class WelcomeActivity extends ActionBarActivity {
                 startActivity(new Intent(this, SignupActivity.class));
                 break;
             case R.id.signup_plus:
+                Intent intent = new Intent(this, SignupActivity.class);
+                intent.putExtra("displayName", getUserDisplayName());
+                intent.putExtra("email", getUserEmail());
+                startActivity(intent);
                 break;
         }
     }
@@ -56,5 +67,32 @@ public class WelcomeActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         backgroundVideo.start();
+    }
+
+    private String getUserDisplayName() {
+        String displayName;
+
+        Cursor cursor = getApplication().getContentResolver().query(ContactsContract.Profile.CONTENT_URI, null, null, null, null);
+        cursor.moveToFirst();
+        displayName = cursor.getString(cursor.getColumnIndex("display_name"));
+        cursor.close();
+
+        return displayName;
+    }
+
+    private String getUserEmail() {
+        String email = "";
+
+        Pattern emailPattern = Patterns.EMAIL_ADDRESS;
+        Account[] accounts = AccountManager.get(getApplicationContext()).getAccounts();
+
+        for (Account account : accounts) {
+            if (emailPattern.matcher(account.name).matches()) {
+                email = account.name;
+                break;
+            }
+        }
+
+        return email;
     }
 }

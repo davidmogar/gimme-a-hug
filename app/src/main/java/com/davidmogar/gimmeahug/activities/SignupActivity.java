@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.davidmogar.gimmeahug.R;
@@ -67,6 +68,8 @@ public class SignupActivity extends ActionBarActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
         }
+
+        initializeForm();
     }
 
     public void handleSignUpData() {
@@ -134,5 +137,17 @@ public class SignupActivity extends ActionBarActivity {
 
     private void cropImage(Uri sourceImage, Uri croppedImage) {
         new Crop(sourceImage).output(croppedImage).asSquare().start(this);
+    }
+
+    private void initializeForm() {
+        Intent intent = getIntent();
+
+        if (intent.getExtras() != null) {
+            String displayName = getIntent().getStringExtra("displayName");
+            String email = getIntent().getStringExtra("email");
+
+            ((TextView) findViewById(R.id.username)).setText(displayName);
+            ((TextView) findViewById(R.id.email)).setText(email);
+        }
     }
 }
