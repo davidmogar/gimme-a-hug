@@ -89,6 +89,7 @@
     <orderEntry type="library" exported="" name="navigationdrawer-material-1.0.4" level="project" />
     <orderEntry type="library" exported="" name="circleimageview-1.2.1" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.0.0" level="project" />
+    <orderEntry type="library" exported="" name="android-crop-0.9.10" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.0.0" level="project" />
   </component>
 </module>

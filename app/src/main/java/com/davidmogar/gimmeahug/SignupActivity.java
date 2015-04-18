@@ -1,32 +1,58 @@
 package com.davidmogar.gimmeahug;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.apache.http.HttpEntity;
+import com.soundcloud.android.crop.Crop;
+
 import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class SignupActivity extends ActionBarActivity {
 
+    private static final int RESULT_PICK_IMAGE = 2000;
+    private static final int RESULT_CROP_IMAGE = 3000;
     private Toolbar toolbar;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        File croppedImageFile = new File(getFilesDir(), "profile.jpg");
+
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case RESULT_PICK_IMAGE:
+                    cropImage(data.getData(), Uri.fromFile(croppedImageFile));
+                    break;
+                case Crop.REQUEST_CROP:
+                    CircleImageView imageView = (CircleImageView) findViewById(R.id.profile_image);
+                    imageView.setImageBitmap(BitmapFactory.decodeFile(croppedImageFile.getAbsolutePath()));
+                    break;
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +79,10 @@ public class SignupActivity extends ActionBarActivity {
             Toast.makeText(getApplicationContext(), getText(R.string.password_not_secure_error), Toast.LENGTH_SHORT).show();
         } else {
 //            signUp(username, password);
-            startActivity(new Intent(this, MainActivity.class));
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
         }
     }
 
@@ -88,19 +117,22 @@ public class SignupActivity extends ActionBarActivity {
             if (response.getStatusLine().getStatusCode() == 200) {
 
             } else {
-                InputStream content = response.getEntity().getContent();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-                StringBuilder builder = new StringBuilder();
 
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    builder.append(line);
-                }
             }
         } catch (ClientProtocolException e) {
 
         } catch (IOException e) {
 
         }
+    }
+
+    public void selectProfileImage(View view) {
+        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Select File"), RESULT_PICK_IMAGE);
+    }
+
+    private void cropImage(Uri sourceImage, Uri croppedImage) {
+        new Crop(sourceImage).output(croppedImage).asSquare().start(this);
     }
 }

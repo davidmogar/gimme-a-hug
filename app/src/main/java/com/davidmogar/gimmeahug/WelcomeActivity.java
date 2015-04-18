@@ -5,9 +5,11 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 
@@ -27,6 +29,15 @@ public class WelcomeActivity extends ActionBarActivity {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mp.setLooping(true);
+            }
+        });
+
+        TextView loginText = (TextView) findViewById(R.id.login);
+        loginText.setText(Html.fromHtml(getText(R.string.login).toString()));
+        loginText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });
     }
