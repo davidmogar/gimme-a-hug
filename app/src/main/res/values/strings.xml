@@ -11,12 +11,17 @@
     <string name="signup_username_hint">Username</string>
     <string name="signup_email_hint">Email</string>
 
-    <string name="signup_emptyform_error">You must fill both fields</string>
+    <string name="invalid_credentials_error">Given credentials are invalid</string>
+    <string name="server_unrechable_error">Ooops! Can\'t reach the server right now</string>
+    <string name="empty_form_error">You must fill all fields</string>
     <string name="password_not_secure_error">The password is not secure enough</string>
+
     <string name="login"><![CDATA[Already have an account? <b>Log in now</b>]]></string>
     <string name="action_settings">Settings</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="anonymous_user_name">Anonymous</string>
+    <string name="cant_create_error">Ooops! Can\'t create user. Already exist?</string>
+    <string name="uploading_image">Uploading profile image</string>
 </resources>

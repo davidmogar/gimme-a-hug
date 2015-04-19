@@ -1,14 +1,25 @@
 package com.davidmogar.gimmeahug.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.davidmogar.gimmeahug.R;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -45,14 +56,66 @@ public class LoginActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_done) {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
+            handlerCredentials();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    private void handlerCredentials() {
+        String email = ((EditText) findViewById(R.id.email)).getText().toString();
+        String password = ((EditText) findViewById(R.id.password)).getText().toString();
+
+        if (email.trim().length() == 0 || password.trim().length() == 0) {
+            Toast.makeText(getApplicationContext(), getText(R.string.empty_form_error), Toast.LENGTH_SHORT).show();
+        } else {
+            validateCredentials(email, password);
+        }
+    }
+
+    private void validateCredentials(String email, String password) {
+        ValidateUserTask task = new ValidateUserTask();
+        task.execute(email, password);
+    }
+
+    private void startNextActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    private class ValidateUserTask extends AsyncTask<String, String, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            boolean result = false;
+
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpGet get = new HttpGet("http://156.35.95.69:8002/users/auth/" + params[0]);
+            get.setHeader("content-type", "application/json");
+
+            try {
+                HttpResponse httpResponse = httpClient.execute(get);
+                JSONObject response = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
+                if (response.getBoolean("type")) {
+                    result = true;
+                }
+            } catch (Exception e) {
+                Log.v("RestService", "ValidateUserTask error: " + e);
+            }
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            if (result) {
+                startNextActivity();
+            } else {
+                Toast.makeText(getApplicationContext(), getText(R.string.invalid_credentials_error), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }

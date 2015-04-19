@@ -1,5 +1,8 @@
 package com.davidmogar.gimmeahug.activities;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -96,9 +99,22 @@ public class MainActivity extends NavigationLiveo implements GoogleApiClient.Con
 
     @Override
     public void onUserInformation() {
-        this.mUserPhoto.setImageResource(R.drawable.ic_no_user);
-        this.mUserName.setText(getString(R.string.anonymous_user_name));
         this.mUserBackground.setImageResource(R.drawable.drawer_background);
+
+        Intent intent = getIntent();
+        if (intent.getExtras() != null) {
+            Bundle extras = intent.getExtras();
+            this.mUserName.setText(extras.getString("username"));
+            this.mUserEmail.setText(extras.getString("email"));
+
+            if (intent.hasExtra("profileImage")) {
+                byte[] image = extras.getByteArray("profileImage");
+                Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+                this.mUserPhoto.setImageBitmap(bitmap);
+            } else {
+                this.mUserPhoto.setImageResource(R.drawable.ic_no_user);
+            }
+        }
     }
 
     protected synchronized void buildGoogleApiClient() {
