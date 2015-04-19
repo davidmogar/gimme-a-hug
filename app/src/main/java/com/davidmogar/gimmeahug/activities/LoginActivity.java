@@ -1,6 +1,8 @@
 package com.davidmogar.gimmeahug.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -86,6 +88,13 @@ public class LoginActivity extends ActionBarActivity {
         finish();
     }
 
+    private void saveUserId(String userId) {
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_name), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.user_id), userId);
+        editor.commit();
+    }
+
     private class ValidateUserTask extends AsyncTask<String, String, Boolean> {
 
         @Override
@@ -100,6 +109,7 @@ public class LoginActivity extends ActionBarActivity {
                 HttpResponse httpResponse = httpClient.execute(get);
                 JSONObject response = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
                 if (response.getBoolean("type")) {
+                    saveUserId(response.getJSONObject("data").getString("_id"));
                     result = true;
                 }
             } catch (Exception e) {

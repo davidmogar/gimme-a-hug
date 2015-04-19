@@ -1,6 +1,8 @@
 package com.davidmogar.gimmeahug.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
@@ -34,11 +36,6 @@ public class MainActivity extends NavigationLiveo implements GoogleApiClient.Con
     private GoogleApiClient googleApiClient;
     private List<String> itemsNames;
     private LocationRequest locationRequest;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-    }
 
     @Override
     public void onClickFooterItemNavigation(View view) {

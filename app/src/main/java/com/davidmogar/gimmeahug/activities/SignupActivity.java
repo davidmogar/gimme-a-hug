@@ -1,7 +1,9 @@
 package com.davidmogar.gimmeahug.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -193,6 +195,13 @@ public class SignupActivity extends ActionBarActivity {
         finish();
     }
 
+    private void saveUserId(String userId) {
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.shared_preferences_name), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.user_id), userId);
+        editor.commit();
+    }
+
     private class CreateUserTask extends AsyncTask<String, String, Boolean> {
 
         @Override
@@ -214,6 +223,7 @@ public class SignupActivity extends ActionBarActivity {
                 HttpResponse httpResponse = httpClient.execute(post);
                 JSONObject response = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
                 if (response.getBoolean("type")) {
+                    saveUserId(response.getJSONObject("data").getString("_id"));
                     uploadImage(response);
                     result = true;
                 }

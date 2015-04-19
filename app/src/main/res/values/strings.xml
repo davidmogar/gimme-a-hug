@@ -24,4 +24,6 @@
     <string name="anonymous_user_name">Anonymous</string>
     <string name="cant_create_error">Ooops! Can\'t create user. Already exist?</string>
     <string name="uploading_image">Uploading profile image</string>
+    <string name="user_id">user_id</string>
+    <string name="shared_preferences_name">com.davidmogar.gimmeahug.APP_PREFERENCES</string>
 </resources>
