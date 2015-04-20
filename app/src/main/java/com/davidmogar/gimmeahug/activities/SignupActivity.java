@@ -270,7 +270,6 @@ public class SignupActivity extends ActionBarActivity {
             try {
                 HttpResponse httpResponse = httpClient.execute(post);
                 JSONObject response = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
-                Log.v("FUCK", response.toString());
             } catch (IOException e) {
                 Log.v("RestService", "Can't upload image");
             } catch (JSONException e) {

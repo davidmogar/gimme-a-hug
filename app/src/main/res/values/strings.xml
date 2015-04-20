@@ -22,8 +22,35 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="anonymous_user_name">Anonymous</string>
+    <string name="a_user_wants_hug">A user wants to hug you!</string>
+    <string name="user_wants_hug">wants to hug you!</string>
     <string name="cant_create_error">Ooops! Can\'t create user. Already exist?</string>
     <string name="uploading_image">Uploading profile image</string>
     <string name="user_id">user_id</string>
     <string name="shared_preferences_name">com.davidmogar.gimmeahug.APP_PREFERENCES</string>
+    <string name="max_radius">max_radius</string>
+    <string name="following">Yay! You are now following this user</string>
+    <string name="already_following">You are already following this user</string>
+    <string name="notification_sent">Hug notification sent</string>
+    <string name="title_activity_hug">HugActivity</string>
+    <string name="accept_hug">Accept</string>
+    <string name="ignore_hug">Ignore</string>
+    <string name="accept_message">Do you want to accept the hug?</string>
+    <string name="request_notification_title">Hug request</string>
+    <string name="accept_notification_title">Hug accepted</string>
+    <string name="title_activity_hug_info">HugInfoActivity</string>
+    <string name="hug_accepted">Hug accepted!</string>
+    <string name="hug_message_info">This is going to be a great hug! On the meanwhile we\'ll update your hug counters. By the way, you can still use the app map to reach each other. Enjoy!</string>
+    <string name="a_user_accepted_hug">A user have accepted your hug</string>
+    <string name="max_radius_label">Max map radius</string>
+    <string name="zoom_level_label">Map zoom level</string>
+    <string name="save">Save</string>
+    <string name="active_users">Active users</string>
+    <string name="explore">Explore</string>
+    <string name="starred_users">Starred users</string>
+    <string name="account">Account</string>
+    <string name="log_out">Log out</string>
+    <string name="settings">Settings</string>
+    <string name="zoom">zoom</string>
+    <string name="settings_saved">Settings saved</string>
 </resources>

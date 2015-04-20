@@ -15,18 +15,21 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.davidmogar.gimmeahug.R;
+import com.davidmogar.gimmeahug.models.User;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
 public class LoginActivity extends ActionBarActivity {
 
     private Toolbar toolbar;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,7 @@ public class LoginActivity extends ActionBarActivity {
         String email = ((EditText) findViewById(R.id.email)).getText().toString();
         String password = ((EditText) findViewById(R.id.password)).getText().toString();
 
-        if (email.trim().length() == 0 || password.trim().length() == 0) {
+        if (email.trim().length() == 0) {
             Toast.makeText(getApplicationContext(), getText(R.string.empty_form_error), Toast.LENGTH_SHORT).show();
         } else {
             validateCredentials(email, password);
@@ -83,6 +86,9 @@ public class LoginActivity extends ActionBarActivity {
 
     private void startNextActivity() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("userId", user.getId());
+        intent.putExtra("username", user.getName());
+        intent.putExtra("email", user.getEmail());
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
@@ -93,6 +99,16 @@ public class LoginActivity extends ActionBarActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getString(R.string.user_id), userId);
         editor.commit();
+    }
+
+    private void parseUserData(JSONObject data) {
+        try {
+            user = new User(data.getString("_id"));
+            user.setName(data.getString("username"));
+            user.setEmail(data.getString("email"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private class ValidateUserTask extends AsyncTask<String, String, Boolean> {
@@ -110,6 +126,7 @@ public class LoginActivity extends ActionBarActivity {
                 JSONObject response = new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
                 if (response.getBoolean("type")) {
                     saveUserId(response.getJSONObject("data").getString("_id"));
+                    parseUserData(response.getJSONObject("data"));
                     result = true;
                 }
             } catch (Exception e) {

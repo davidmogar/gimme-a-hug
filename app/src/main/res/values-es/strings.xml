@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Gimme a hug</string>
+
+    <string name="hello_world">Hola mundo!</string>
+    <string name="action_done">Hecho</string>
+    <string name="title_activity_login">Iniciar sesión</string>
+    <string name="signup_email">Registrarse con email</string>
+    <string name="signup_google">Registrarse con Google+</string>
+    <string name="title_activity_signup">Registro</string>
+    <string name="signup_password_hint">Contraseña</string>
+    <string name="signup_username_hint">Usuario</string>
+    <string name="signup_email_hint">Email</string>
+
+    <string name="invalid_credentials_error">Las credenciales son invalidas</string>
+    <string name="server_unrechable_error">Ooops! No se puede conectar con el servidor</string>
+    <string name="empty_form_error">Tienes que relleanar todos los campos</string>
+    <string name="password_not_secure_error">La contraseña no es segura</string>
+
+    <string name="login"><![CDATA[¿Ya tienes una cuenta? <b>Inicia sesión</b>]]></string>
+    <string name="action_settings">Configuración</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="anonymous_user_name">Anonimo</string>
+    <string name="a_user_wants_hug">Un usuario quiere abrazarte!</string>
+    <string name="user_wants_hug">quiere abrazarte!</string>
+    <string name="cant_create_error">Ooops! No se puede crear el usuario. ¿Ya existe?</string>
+    <string name="uploading_image">Subiendo imagen de perfil</string>
+    <string name="user_id">user_id</string>
+    <string name="shared_preferences_name">com.davidmogar.gimmeahug.APP_PREFERENCES</string>
+    <string name="max_radius">max_radius</string>
+    <string name="following">Yay! Ahora estas siguiendo a este usuario</string>
+    <string name="already_following">Ya estás siguiendo a este usuario</string>
+    <string name="notification_sent">Notificación de abrazo enviada</string>
+    <string name="title_activity_hug">HugActivity</string>
+    <string name="accept_hug">Aceptar</string>
+    <string name="ignore_hug">Ignorar</string>
+    <string name="accept_message">¿Quieres aceptar el abrazo?</string>
+    <string name="request_notification_title">Petición de abrazo</string>
+    <string name="accept_notification_title">Abrazo aceptado</string>
+    <string name="title_activity_hug_info">HugInfoActivity</string>
+    <string name="hug_accepted">Abrazo aceptado!</string>
+    <string name="hug_message_info">Este va a ser un gran abrazo. Mientras tanto actualizaremos vuestros contadores de abrazos. Por cierto, podeis seguir usando el mapa de la aplicación para localizaros. Disfrutad!</string>
+    <string name="a_user_accepted_hug">Un usuario a aceptado tu abrazo</string>
+    <string name="max_radius_label">Maximo radio en el mapa</string>
+    <string name="zoom_level_label">Nivel de zoom en el mapa</string>
+    <string name="save">Guardar</string>
+    <string name="active_users">Usuarios activos</string>
+    <string name="explore">Explorar</string>
+    <string name="starred_users">Usuario marcados</string>
+    <string name="account">Cuenta</string>
+    <string name="log_out">Salir</string>
+    <string name="settings">Configuración</string>
+    <string name="zoom">zoom</string>
+    <string name="settings_saved">Ajusted guardados</string>
+</resources>

@@ -1,64 +1,46 @@
 package com.davidmogar.gimmeahug.fragments;
 
-import android.app.Activity;
 import android.content.res.Resources;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.davidmogar.gimmeahug.R;
+import com.davidmogar.gimmeahug.models.User;
 
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
 
+public class ProfileFragment extends Fragment implements MaterialTabListener {
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MainFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MainFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class MainFragment extends Fragment implements MaterialTabListener {
-
+    private UserInfoFragment userInfoFragment;
+    private CommentsFragment commentsFragment;
     private MaterialTabHost tabHost;
+    private Resources resources;
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
-    private OnFragmentInteractionListener mListener;
-    private Resources resources;
+    private User user;
 
-    public static MainFragment newInstance() {
-        MainFragment fragment = new MainFragment();
+    public static ProfileFragment newInstance(User user) {
+        ProfileFragment fragment = new ProfileFragment();
+        fragment.user = user;
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public MainFragment() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         tabHost = (MaterialTabHost) view.findViewById(R.id.tab_host);
         viewPager = (ViewPager) view.findViewById(R.id.view_pager);
@@ -76,32 +58,17 @@ public class MainFragment extends Fragment implements MaterialTabListener {
 
         resources = getResources();
 
-        tabHost.addTab(tabHost.newTab().setIcon(resources.getDrawable(R.drawable.ic_group_white_24dp)).setTabListener(this));
-        tabHost.addTab(tabHost.newTab().setIcon(resources.getDrawable(R.drawable.ic_place_white_24dp)).setTabListener(this));
+        tabHost.addTab(tabHost.newTab().setIcon(resources.getDrawable(R.drawable.ic_person_white_24dp)).setTabListener(this));
+        tabHost.addTab(tabHost.newTab().setIcon(resources.getDrawable(R.drawable.ic_comment_white_24dp)).setTabListener(this));
+
+        createChildFragments();
 
         return view;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    @Override
-    public void onTabReselected(MaterialTab materialTab) {
-
+    private void createChildFragments() {
+        userInfoFragment = new UserInfoFragment().newInstance(user);
+        commentsFragment = new CommentsFragment().newInstance(user);
     }
 
     @Override
@@ -110,12 +77,13 @@ public class MainFragment extends Fragment implements MaterialTabListener {
     }
 
     @Override
-    public void onTabUnselected(MaterialTab materialTab) {
+    public void onTabReselected(MaterialTab materialTab) {
 
     }
 
-    public interface OnFragmentInteractionListener {
-        public void onFragmentInteraction(Uri uri);
+    @Override
+    public void onTabUnselected(MaterialTab materialTab) {
+
     }
 
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -125,18 +93,13 @@ public class MainFragment extends Fragment implements MaterialTabListener {
 
         }
 
-        public Fragment getItem(int num) {
-            Fragment fragment;
-
+        public android.support.v4.app.Fragment getItem(int num) {
             switch (num) {
                 case 1:
-                    fragment = new MapFragment().newInstance();
-                    break;
+                    return commentsFragment;
                 default:
-                    fragment = new UsersListFragment().newInstance();
+                    return userInfoFragment;
             }
-
-            return fragment;
         }
 
         @Override
@@ -150,5 +113,4 @@ public class MainFragment extends Fragment implements MaterialTabListener {
         }
 
     }
-
 }
